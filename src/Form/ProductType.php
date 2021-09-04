@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Category;
 use App\Entity\Product;
+use App\Form\DataTransformer\CentimesTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
@@ -27,7 +28,8 @@ class ProductType extends AbstractType
             ])
             ->add('price', MoneyType::class, [
                 'label' => 'Prix du produit : ',
-                'attr' => ['placeholder' => 'Tapez le prix du produit (en €)']
+                'attr' => ['placeholder' => 'Tapez le prix du produit (en €)'],
+                'divisor' => 100
             ])
             ->add('mainPicture', UrlType::class, [
                 'label' => 'Image du produit : ',
