@@ -23,12 +23,12 @@
 						<td>{{ item.product.name }}</td>
 						<td>{{ item.product.price}}</td>
 						<td>
-							<a href="{{path('cart_add', {'id': item.product.id})}}?returnToCart=true" class="btn btn-sm btn-secondary">
-								<i class="fas fa-plus"></i>
-							</a>
-							{{ item.qty }}
 							<a href="{{path('cart_decrement', {'id': item.product.id})}}" class="btn btn-sm btn-secondary">
 								<i class="fas fa-minus"></i>
+							</a>
+							{{ item.qty }}
+							<a href="{{path('cart_add', {'id': item.product.id})}}?returnToCart=true" class="btn btn-sm btn-secondary">
+								<i class="fas fa-plus"></i>
 							</a>
 						</td>
 						<td>{{ item.total}}</td>
@@ -47,6 +47,22 @@
 				</tr>
 			</tfoot>
 		</table>
+		<hr class="mt-5">
+		{% if app.user %}
+			<h2>Confirmez votre commande en remplissant ce formulaire</h2>
+			{{ form_start(confirmationForm, {'action': path('purchase_confirm') }) }}
+
+			{{ form_widget(confirmationForm) }}
+
+			<button type="submit" class="btn btn-success mt-4">Validez</button>
+
+			{{ form_end(confirmationForm) }}
+		{% else %}
+			<h2>Vous devez être connecté pour passez la commande</h2>
+			<a href="{{ path('security_login') }}" class="btn btn-success">Connexion</a>
+			ou
+			<a href="#" class="btn btn-secondary">Créer un compte</a>
+		{% endif %}
 	{% else %}
 		<h2>Le panier est vide !</h2>
 	{% endif %}
