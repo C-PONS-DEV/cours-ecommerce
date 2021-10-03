@@ -14,7 +14,7 @@ Installation:
 
     - In a terminal: cd Desktop && git clone https://github.com/C-PONS-DEV/cours-ecommerce
     
-    - Modify databases information in the .env file
+    - Modify databases and the keys public, secret of stripe information in the .env file
     
     - Run symfony " symfony serve " in a terminal
 
